@@ -13,6 +13,8 @@ import {
   Instagram,
   Facebook,
   Twitter,
+  Youtube,
+  Linkedin,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
@@ -92,7 +94,7 @@ const LandingPage = () => {
               </div>
 
               <p className="text-lg md:text-xl text-slate-400 max-w-lg font-medium leading-relaxed">
-                The most prestigious martial arts showdown in Telangana. 
+                The Most Prestigious Martial Arts Showdown in Telangana. 
                 <span className="block mt-2 text-white">TSKA Approved • KIO Affiliated • Govt Recognized.</span>
               </p>
 
@@ -126,8 +128,8 @@ const LandingPage = () => {
                     <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                     
                     <div className="flex justify-between items-center text-sm font-bold">
-                       <span className="text-slate-400">ENTRY CLOSES IN</span>
-                       <span className="text-red-500 font-mono">14 DAYS</span>
+                       <span className="text-slate-400">ENTRY CLOSES BY</span>
+                       <span className="text-red-500 font-mono">10 December</span>
                     </div>
                   </div>
                 </div>
@@ -159,95 +161,225 @@ const LandingPage = () => {
       <main className="container mx-auto px-4 md:px-6 py-24 space-y-32">
         
         {/* ===================== VENUE SECTION ===================== */}
-        <section id="venue" className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
-            <div className="absolute top-0 right-0 p-8 opacity-20">
-              <MapPin className="w-48 h-48 text-red-600" />
-            </div>
-            <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
-              <div>
-                <h3 className="text-slate-400 font-bold uppercase tracking-widest mb-2">
-                  The Arena
-                </h3>
-                <p className="text-3xl md:text-5xl font-black uppercase text-white leading-tight">
-                  Emerald Height <br /> Club House
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="h-12 w-1 bg-red-600"></div>
-                <div>
-                  <p className="text-white font-bold text-lg">
-                    Annojiguda, Pocharam
-                  </p>
-                  <p className="text-slate-500">Hyderabad Highway</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* ===================== VENUE SECTION WITH MAP ===================== */}
+<section id="venue" className="grid md:grid-cols-3 gap-6">
 
-          <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
-            <div className="relative z-10 flex flex-col h-full justify-between">
-              <div className="flex justify-between items-start">
-                <Clock className="w-10 h-10 text-white" />
-                <div className="bg-red-600 text-black font-bold px-3 py-1 text-xs rounded uppercase">
-                  Sharp
-                </div>
-              </div>
-              <div>
-                <p className="text-6xl font-black text-white">09:00</p>
-                <p className="text-xl font-bold text-red-500 uppercase">
-                  AM Onwards
-                </p>
-                <p className="text-slate-500 text-sm mt-2">
-                  Report by 08:30 AM
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* LEFT SIDE – VENUE DETAILS */}
+  <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
+    <div className="absolute top-0 right-0 p-8 opacity-20">
+      <MapPin className="w-48 h-48 text-red-600" />
+    </div>
+    <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
+      <div>
+        <h3 className="text-slate-400 font-bold uppercase tracking-widest mb-2">
+          The Arena
+        </h3>
+        <p className="text-3xl md:text-5xl font-black uppercase text-white leading-tight">
+          Emerald Height <br /> Club House
+        </p>
+      </div>
+      <div className="flex items-center gap-4">
+        <div className="h-12 w-1 bg-red-600"></div>
+        <div>
+          <p className="text-white font-bold text-lg">
+            Annojiguda, Pocharam
+          </p>
+          <p className="text-slate-500">Hyderabad Highway</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* MIDDLE CARD – GOOGLE MAP */}
+  <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10">
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Emerald+Height+Club+House+Annojiguda+Pocharam+Hyderabad+Highway"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.751321006971!2d78.66562027494834!3d17.4237178834697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb75f1d5958b83%3A0x4f055e43071b04c1!2sEmerald%20Heights%20Club%20House%2C%20Annojiguda%2C%20ghatkesar%2C%20Hyderabad%2C%20Telangana%20500088!5e0!3m2!1sen!2sin!4v1764871007109!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        className="min-h-[300px]"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </a>
+
+    <div className="absolute bottom-3 right-3 bg-red-600 text-black px-3 py-1 text-xs rounded font-bold">
+      OPEN IN MAPS
+    </div>
+  </div>
+
+  {/* RIGHT CARD – TIME */}
+  <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
+    <div className="relative z-10 flex flex-col h-full justify-between">
+      <div className="flex justify-between items-start">
+        <Clock className="w-10 h-10 text-white" />
+        <div className="bg-red-600 text-black font-bold px-3 py-1 text-xs rounded uppercase">
+          Sharp
+        </div>
+      </div>
+
+      <div>
+        <p className="text-6xl font-black text-white">09:00</p>
+        <p className="text-xl font-bold text-red-500 uppercase">
+          AM Onwards
+        </p>
+        <p className="text-slate-500 text-sm mt-2">
+          Report by 08:30 AM
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
 
         {/* ===================== CATEGORIES ===================== */}
         <section>
-          <div className="flex flex-col md:flex-row items-end justify-between mb-12">
-            <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
-              Event <span className="text-red-600 stroke-text-red">Categories</span>
-            </h2>
-            <p className="text-slate-400 max-w-sm mt-4 md:mt-0">
-              Open to all age groups. Demonstrate your discipline and skill.
-            </p>
-          </div>
+  <div className="flex flex-col md:flex-row items-end justify-between mb-12">
+    <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
+      Event <span className="text-red-600 stroke-text-red">Categories</span>
+    </h2>
+  </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {[
-              { title: "KATA", desc: "Form & Precision", icon: Star },
-              { title: "KUMITE", desc: "Combat & Sparring", icon: Target },
-              
-            ].map((cat, i) => (
-              <div
-                key={i}
-                className="group relative h-80 bg-[#0A0A0A] border border-white/10 rounded-2xl  overflow-hidden"
-              >
-                <span className="absolute -bottom-8 -right-4 text-9xl font-black text-white/5">
-                  0{i + 1}
-                </span>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    {[
+      {
+        title: "KATA",
+        desc: "Form & Precision",
+        icon: Star,
+        link: "https://www.wkf.net/files/pdf/documents/WKF_Kata_Competition_Rules_2024.pdf",
+      },
+      {
+        title: "KUMITE",
+        desc: "Combat & Sparring",
+        icon: Target,
+        link: "https://www.wkf.net/files/pdf/documents/WKF_Kumite_Competition_Rules_2024.pdf",
+      },
+    ].map((cat, i) => (
+      <div
+        key={i}
+        className="group relative h-96 bg-[#0A0A0A] border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center p-6"
+      >
+        {/* Large Background Number */}
+        <span className="absolute -bottom-8 -right-4 text-9xl font-black text-white/5">
+          0{i + 1}
+        </span>
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
-                  <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6">
-                    <cat.icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-3xl font-black uppercase italic mb-2">
-                    {cat.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm font-medium">{cat.desc}</p>
-                </div>
+        {/* Icon */}
+        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6">
+          <cat.icon className="w-8 h-8" />
+        </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition">
-                  
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Title */}
+        <h3 className="text-3xl font-black uppercase italic mb-2">
+          {cat.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-slate-400 text-sm font-medium mb-6">{cat.desc}</p>
+
+        {/* RULES BUTTON */}
+        <button
+          onClick={() => window.open(cat.link, "_blank")}
+          className="
+            mt-auto px-5 py-2 text-sm font-bold uppercase tracking-wide
+            text-white border border-white
+            rounded-lg shadow-[0_0_25px_rgba(220,38,38,0.4)]
+            transition-all duration-300 relative overflow-hidden group
+          "
+        >
+          <span className="relative z-10 flex items-center gap-1">
+            View Rules <ChevronRight className="w-4 h-4" />
+          </span>
+
+          {/* Shining Hover Effect */}
+          <div
+            className="
+              absolute inset-0 bg-white/20 translate-x-[-120%]
+              group-hover:translate-x-[120%] skew-x-12
+              transition-transform duration-700
+            "
+          ></div>
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
+
+{/* ===================== TOURNAMENT EVENTS TABLE ===================== */}
+<section className="rounded-3xl bg-[#0A0A0A] border border-white/10 p-8 mt-20">
+  <h2 className="text-4xl md:text-5xl font-black uppercase italic text-center mb-10">
+    <span className="text-white">List of the</span>{" "}
+    <span className="text-red-600">Tournament Events</span>
+    <span className="text-sm block text-slate-400 mt-1">(JKAI Rules)</span>
+  </h2>
+
+  {/* Outer Grid */}
+  <div className="grid md:grid-cols-3 gap-6">
+
+    {/* KATA LIST */}
+    <div className="bg-black/40 border border-white/10 rounded-2xl p-6">
+      <h3 className="text-xl font-black uppercase text-red-500 mb-4">KATA (Forms)</h3>
+      <ul className="space-y-2 text-slate-300 font-mono text-sm">
+        <li>1. Under 8 Yrs (B & G)</li>
+        <li>2. Under 10 Yrs (B & G)</li>
+        <li>3. Under 12 Yrs (B & G)</li>
+        <li>4. Under 14 Yrs (B & G)</li>
+        <li>5. Under 16 Yrs (B & G)</li>
+        <li>6. Under 18 Yrs (B & G)</li>
+        <li>7. Above 18 Yrs (B & G)</li>
+        <li>8. Brown Belts (B & G)</li>
+        <li>9. Black Belts (B & G)</li>
+      </ul>
+    </div>
+
+    {/* KUMITE LIST */}
+    <div className="bg-black/40 border border-white/10 rounded-2xl p-6">
+      <h3 className="text-xl font-black uppercase text-red-500 mb-4">KUMITE (Sparring)</h3>
+      <ul className="space-y-2 text-slate-300 font-mono text-sm">
+        <li>10. Under 8 Yrs (B & G)</li>
+        <li>11. Under 10 Yrs (B & G)</li>
+        <li>12. Under 12 Yrs (B & G)</li>
+        <li>13. Under 14 Yrs (B & G)</li>
+        <li>14. Under 16 Yrs (B & G)</li>
+        <li>15. Under 18 Yrs (B & G)</li>
+        <li>16. Above 18 Yrs (B & G)</li>
+        <li>17. Brown Belts (B & G)</li>
+        <li>18. Black Belts (B & G)</li>
+      </ul>
+    </div>
+
+    {/* NOTES */}
+    <div className="bg-black/40 border border-white/10 rounded-2xl p-6">
+      <h3 className="text-xl font-black uppercase text-red-500 mb-4">Notes</h3>
+      <ul className="space-y-4 text-slate-300 font-mono text-sm leading-relaxed">
+        <li>1) Each Group has 4 Members</li>
+        <li>2) <span className="text-red-400">1st Place</span> & <span className="text-red-400">2nd Place</span></li>
+        <li>3) <span className="text-red-400">3rd Place + 3rd Place</span></li>
+      </ul>
+    </div>
+  </div>
+
+  {/* FOOTER INFO BAR */}
+  <div className="grid md:grid-cols-3 gap-4 mt-10 text-sm font-bold text-center">
+    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+      1) Lunch Self Only
+    </div>
+    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+      2) Entry Fee for Event Rs. 1000
+    </div>
+    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+      3) Gloves Compulsory
+    </div>
+  </div>
+</section>
 
         {/* ===================== OFFICIALS (With Images) ===================== */}
        <section className="relative rounded-3xl bg-gradient-to-br from-zinc-900 to-black border border-white/10 p-12 overflow-hidden">
@@ -271,9 +403,10 @@ const LandingPage = () => {
           className="w-full h-full object-fit"
         />
       </div>
-      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Master</h3>
-      <p className="text-red-500 font-bold uppercase text-xs tracking-widest mb-2">Chief Judge</p>
-      <p className="text-slate-500 text-sm font-mono">Tournament Director</p>
+      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Rapolu Sudershan</h3>
+ 
+      <p className="text-slate-500 text-sm font-mono">Tournment Cheif Judge
+</p>
     </div>
 
     {/* OFFICIAL 2 — GOVIND */}
@@ -286,8 +419,8 @@ const LandingPage = () => {
         />
       </div>
       <h3 className="text-2xl font-bold text-white mt-6 mb-1">G. Govind</h3>
-      <p className="text-red-500 font-bold uppercase text-xs tracking-widest mb-2">Chief Organizer</p>
-      <p className="text-slate-500 text-sm font-mono">Medchal Dist. Chief</p>
+
+      <p className="text-slate-500 text-sm font-mono">Tournment Cheif Organizer</p>
     </div>
 
   </div>
@@ -302,9 +435,7 @@ const LandingPage = () => {
     <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
       Our <span className="text-red-600 stroke-text-red">Team</span>
     </h2>
-    <p className="text-slate-400 max-w-sm mt-4 md:mt-0 text-right">
-      Meet the dedicated team ensuring a smooth and safe event.
-    </p>
+   
   </div>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 overflow-hidden">
@@ -314,43 +445,43 @@ const LandingPage = () => {
         name: "Nagaraj",
         role: "JKA Diploma",
         img: "/nagaraj.jpg",
-        category: "SECURITY",
+        category: "JKA Instructor & Judge",
       },
      {
         name: "Kiran",
         role: "JKA Diploma",
         img: "/kiran-1.jpg",
-        category: "OPERATIONS",
+        category: "Judge",
       },
       {
         name: "Kiran",
         role: "JKA Diploma",
         img: "/kiran-2.jpg",
-        category: "TEAM",
+        category: "Judge",
       },
        {
         name: "Santosh",
         role: "JKAI Medchal District Vice President",
         img: "./santu.png",
-        category: "MEDICAL",
+        category: "Judge",
       },
       {
         name: "Komal",
         role: "JKA DIPLOMA",
         img: "/komal.jpg",
-        category: "MEDICAL",
+        category: "Judge",
       },
       {
         name: "Akshay",
         role: "KIO Black Belt",
         img: "/akshay.jpg",
-        category: "MANAGEMENT",
+        category: "Judge",
       },
       {
         name: "Avinash",
         role: "KIO Black Belt",
         img: "/avi.jpg",
-        category: "TECH DESK",
+        category: "Judge",
       },
       
       
@@ -359,7 +490,7 @@ const LandingPage = () => {
         name: "Ajith",
         role: "KIO Black Belt",
         img: "/ajith.jpg",
-        category: "TEAM",
+        category: "Judge",
       },
     ].map((member, i) => (
       <div
@@ -396,49 +527,102 @@ const LandingPage = () => {
       </main>
 
       {/* ===================== CONTACT SECTION ===================== */}
-      <footer
-        id="contact"
-        className="bg-black border-t border-white/10 pt-20 pb-10"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-16">
-            <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter mb-8 md:mb-0">
-              JKAI <span className="text-red-600">TG</span>
-            </h2>
-            <div className="flex gap-6">
-              {[Instagram, Facebook, Twitter].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
-          </div>
+<footer
+  id="contact"
+  className="bg-black border-t border-white/10 pt-20 pb-12 relative overflow-hidden"
+>
+  {/* Glow Line */}
+  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-40"></div>
 
-          <div className="flex flex-col md:flex-row justify-between text-slate-500 text-sm font-mono border-t border-white/10 pt-8">
-            <p>© 2025 JKAI Telangana State.</p>
-            <div className="space-x-8 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">
-                PRIVACY
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                TERMS
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                CONTACT
-              </a>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between text-slate-500 text-sm font-mono ">
-            
-            <a href="#" className="hover:text-white transition-colors">
-                Designed by Avinash Yadav
-              </a></div>
-          </div>
-        </div>
-      </footer>
+  <div className="container mx-auto px-4 relative z-10">
+    {/* ---------- TOP ROW ---------- */}
+    <div className="flex flex-col md:flex-row justify-between items-center mb-16 text-center md:text-left">
+      {/* Brand */}
+      <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter mb-6 md:mb-0">
+        JKAI <span className="text-red-600">TG</span>
+      </h2>
+
+      {/* Social Icons */}
+   <div className="flex gap-6">
+  {[
+    { Icon: Instagram, url: "https://www.instagram.com/jka_medchal.dist/" },
+    { Icon: Facebook, url: "https://www.facebook.com/groups/1492975447736405/" },
+    { Icon: Twitter, url: "https://x.com/KarateMedchal" },
+    { Icon: Linkedin, url: "https://www.linkedin.com/in/karate-academy-jka-medchal-dist-930147227/" }, // Using User icon for LinkedIn (you can replace with LinkedIn icon if you import)
+    { Icon: Youtube, url: "https://www.youtube.com/channel/UC-CkD3hOFzambpvQle_ljLg" }, // Replace with Youtube icon if you have one
+  ].map(({ Icon, url }, i) => (
+    <a
+      key={i}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        relative w-12 h-12 flex items-center justify-center rounded-full
+        border border-white/20 overflow-hidden
+        transition-all duration-300 group
+      "
+    >
+      {/* Hover glow */}
+      <div
+        className="
+          absolute inset-0 bg-gradient-to-br from-red-600/40 to-orange-500/40
+          opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500
+        "
+      ></div>
+
+      {/* Subtle bg hover */}
+      <div
+        className="
+          absolute inset-0 bg-white/10 opacity-0 
+          group-hover:opacity-20 transition-all duration-300
+        "
+      ></div>
+
+      {/* Icon */}
+      <Icon
+        className="
+          w-5 h-5 text-white relative z-10
+          transition-all duration-300
+          group-hover:scale-110 group-hover:text-red-500
+        "
+      />
+
+      {/* Border glow */}
+      <div
+        className="
+          absolute inset-0 rounded-full border border-red-600/0
+          group-hover:border-red-600/70 transition-all duration-500
+        "
+      ></div>
+    </a>
+  ))}
+</div>
+
+    </div>
+
+    {/* Divider */}
+    <div className="w-full h-px bg-white/10 mb-8"></div>
+
+    {/* ---------- BOTTOM ROW ---------- */}
+    <div className="flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm font-mono gap-6 md:gap-0">
+
+      {/* Copyright */}
+      <p className="text-center md:text-left">
+        © 2025 JKAI Telangana State. All Rights Reserved.
+      </p>
+
+      {/* Footer Links */}
+      
+
+      {/* Developer Credit */}
+      <p className="text-center md:text-right hover:text-red-500 transition-colors">
+        Designed & Developed by{" "}
+        <span className="text-white font-bold">Avinash Yadav</span>
+      </p>
+
+    </div>
+  </div>
+</footer>
 
       {/* GLOBAL STYLES */}
       <style>{`

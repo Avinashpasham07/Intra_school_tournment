@@ -128,7 +128,11 @@ const RegistrationFormPage = () => {
         return;
       }
 
-      alert("Form submitted successfully! ID: " + result.id);
+      alert(`Form submitted successfully! 
+ID: ${result.id}
+
+Please pay the fee to your Master.`);
+
 
       // Reset form DOM + previews + stored values
       formEl.reset();
