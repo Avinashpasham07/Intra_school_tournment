@@ -113,10 +113,11 @@ const RegistrationFormPage = () => {
     try {
       setSubmitting(true);
 
-      const resp = await fetch("http://localhost:4000/api/submit", {
-        method: "POST",
-        body: fd,
-      });
+      const resp = await fetch("https://intra-school-tournment.onrender.com/api/submit", {
+  method: "POST",
+  body: fd,
+});
+
 
       const result = await resp.json();
 

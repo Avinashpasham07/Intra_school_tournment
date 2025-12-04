@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // ---------------- CORS --------------------
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin:[ "http://localhost:5173",
+  "https://jka-inter-school-tournment.vercel.app/",
+ ]}));
 app.use(express.json());
 
 // ---------------- UPLOAD FOLDER --------------------
