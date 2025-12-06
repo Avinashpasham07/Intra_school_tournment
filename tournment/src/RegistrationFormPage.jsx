@@ -198,22 +198,23 @@ const RegistrationFormPage = () => {
               {
                 name: "consent1",
                 text:
-                  "I/We hereby give consent for the student to participate in the Karate Tournament. The student agrees to follow all instructions."
+                 "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
+
               },
               {
                 name: "consent2",
                 text:
-                  "I, the parent/guardian, grant full consent for my child to participate, understanding the physical nature of the sport."
+                  "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
               },
               {
                 name: "consent3",
                 text:
-                  "I/We acknowledge that the organizing committee, officials, and referees are not responsible for injuries or losses. Participation is at own risk."
+                  "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
               },
               {
                 name: "consent4",
                 text:
-                  "I/We understand that only basic first aid is provided and medical expenses are not covered."
+                  "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
               },
             ].map((c, i) => (
               <label key={i} className="flex gap-3">
