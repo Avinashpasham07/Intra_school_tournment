@@ -113,7 +113,7 @@ const LandingPage = () => {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
           </span>
           <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-300">
-            Inter School Championship 2025
+            Inter School Karate Championship 2025
           </span>
         </div>
 
@@ -529,7 +529,7 @@ const LandingPage = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Shihan Anand Rathana</h3>
+      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Shihan Anand Ratna</h3>
       <p className="text-slate-500 text-sm font-mono">JKA India Cheif</p>
       <p className="text-slate-500 text-sm font-mono">Offical Commission</p>
     </div>
@@ -543,7 +543,7 @@ const LandingPage = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Rapolu Sudershan</h3>
+      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Rapolu Sudarshan</h3>
       <p className="text-slate-500 text-sm font-mono">Tournament Chief Judge</p>
       <p className="text-slate-500 text-sm font-mono">KIO Tournament Commission</p>
     </div>
@@ -557,7 +557,7 @@ const LandingPage = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <h3 className="text-2xl font-bold text-white mt-6 mb-1">G. Govind</h3>
+      <h3 className="text-2xl font-bold text-white mt-6 mb-1">G.Govind</h3>
       <p className="text-slate-500 text-sm font-mono">Tournament Chief Organizer</p>
       <p className="text-slate-500 text-sm font-mono">JKAI T.G Board</p>
     </div>
@@ -621,7 +621,7 @@ const LandingPage = () => {
       {
         name: "K.Shanker",
         role: "T.G Board",
-        img: "/7.jpg", // ← Add your image here
+        img: "/7.jpg", 
       },
     ].map((member, i) => (
       <div
@@ -839,26 +839,37 @@ const LandingPage = () => {
 
 
     {/* ---------- CONTACT INFO ROW ---------- */}
-    <div className="flex flex-col md:flex-row items-center gap-6 text-slate-300 text-sm font-mono mb-8">
+   {/* ---------- CONTACT INFO ROW ---------- */}
+<div className="mb-10">
 
-      {/* Phone */}
-      <p className="flex items-center gap-2">
-        <Phone className="w-4 h-4 text-red-500" />
-        <span className="text-white font-bold">+91 97043 65372</span>
-      </p>
+  {/* Heading */}
+  <h3 className="text-center md:text-left text-zinc-500 text-lg font-black uppercase tracking-wider mb-4">
+    Contact Details
+  </h3>
 
-      {/* Email */}
-      <p className="flex items-center gap-2">
-        <Mail className="w-4 h-4 text-red-500" />
-        <a
-          href="mailto:jkaimedchaldist@gmail.com"
-          className="text-white font-bold hover:text-red-500 transition-colors"
-        >
-          Jkakarateacademy.org.in
-        </a>
-      </p>
+  <div className="flex flex-col md:flex-row items-center gap-6 text-slate-300 text-sm font-mono">
 
-    </div>
+    {/* Phone */}
+    <p className="flex items-center gap-2">
+      <Phone className="w-4 h-4 text-red-500" />
+      <span className="text-white font-bold">+91 97043 65372</span>
+    </p>
+
+    {/* Email */}
+    <p className="flex items-center gap-2">
+      <Mail className="w-4 h-4 text-red-500" />
+      <a
+        href="mailto:jkaimedchaldist@gmail.com"
+        className="text-white font-bold hover:text-red-500 transition-colors"
+      >
+        Jkakarateacademy@gmail.com
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
 
     {/* Divider */}
     <div className="w-full h-px bg-white/10 mb-8"></div>
