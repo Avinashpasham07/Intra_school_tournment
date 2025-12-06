@@ -299,27 +299,29 @@ const LandingPage = () => {
 
   {/* MIDDLE CARD – GOOGLE MAP */}
   <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10">
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Emerald+Height+Club+House+Annojiguda+Pocharam+Hyderabad+Highway"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.751321006971!2d78.66562027494834!3d17.4237178834697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb75f1d5958b83%3A0x4f055e43071b04c1!2sEmerald%20Heights%20Club%20House%2C%20Annojiguda%2C%20ghatkesar%2C%20Hyderabad%2C%20Telangana%20500088!5e0!3m2!1sen!2sin!4v1764871007109!5m2!1sen!2sin"
-        width="100%"
-        height="100%"
-        className="min-h-[300px]"
-        style={{ border: 0 }}
-        allowFullScreen=""
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </a>
+  <a
+    href="https://www.google.com/maps/search/?api=1&query=Emerald+Heights+Modi+Builders"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30453.851039887486!2d78.62867017431641!3d17.424674200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb75f037f24137%3A0x79c81ced5d48e5e0!2sEmerald%20Heights%20-%20Modi%20Builders!5e0!3m2!1sen!2sin!4v1765015919571!5m2!1sen!2sin"
+      width="100%"
+      height="100%"
+      className="min-h-[300px]"
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </a>
 
-    <div className="absolute bottom-3 right-3 bg-red-600 text-black px-3 py-1 text-xs rounded font-bold">
-      OPEN IN MAPS
-    </div>
+  {/* OPEN IN MAPS Button */}
+  <div className="absolute bottom-3 right-3 bg-red-600 text-black px-3 py-1 text-xs rounded font-bold">
+    OPEN IN MAPS
   </div>
+</div>
+
 
   {/* RIGHT CARD – TIME */}
   <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
