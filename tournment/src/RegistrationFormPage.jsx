@@ -8,7 +8,6 @@ const RegistrationFormPage = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
@@ -33,21 +32,19 @@ const RegistrationFormPage = () => {
   );
 
   // ---------------------------------------------------
-  // FORM SUBMIT HANDLER (JSON SUBMISSION)
+  // HANDLE FORM SUBMISSION
   // ---------------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (submitting) return;
 
     const formEl = formRef.current;
-
-    // Convert FormData to JSON object
     const formDataObj = {};
+
     new FormData(formEl).forEach((value, key) => {
       formDataObj[key] = value;
     });
 
-    // Required fields
     const requiredFields = [
       "participantName",
       "fatherName",
@@ -60,34 +57,29 @@ const RegistrationFormPage = () => {
       "dobYYYY",
       "gender",
       "masterName",
-      "district"
+      "district",
     ];
 
     const consentChecks = ["consent1", "consent2", "consent3", "consent4"];
 
     const missing = [];
 
-    // Validate text fields
-    requiredFields.forEach((k) => {
-      if (!formDataObj[k] || formDataObj[k].trim() === "") {
-        missing.push(k);
-      }
+    requiredFields.forEach((key) => {
+      if (!formDataObj[key] || formDataObj[key].trim() === "") missing.push(key);
     });
 
-    // Validate checkboxes
-    consentChecks.forEach((c) => {
-      if (!formDataObj[c]) missing.push(c);
+    consentChecks.forEach((key) => {
+      if (!formDataObj[key]) missing.push(key);
     });
 
     if (missing.length > 0) {
-      alert("Please complete required fields: " + missing.join(", "));
+      alert("Please fill the required fields: " + missing.join(", "));
       return;
     }
 
     try {
       setSubmitting(true);
 
-      // Auto-switch backend: localhost OR Render
       const backendURL =
         window.location.hostname === "localhost"
           ? "http://localhost:4000/api/submit"
@@ -107,10 +99,9 @@ const RegistrationFormPage = () => {
         return;
       }
 
-      alert(`Form submitted successfully!
-ID: ${result.id}
-
-Please pay the fee to your Master.`);
+      alert(
+        `Form submitted successfully!\nID: ${result.id}\nPlease pay the fee to your Master.`
+      );
 
       formEl.reset();
       setFormValues({});
@@ -126,6 +117,7 @@ Please pay the fee to your Master.`);
   // ---------------------------------------------------
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-20 overflow-x-hidden">
+      {/* Background Grid */}
       <div
         className="fixed inset-0 z-0 bg-[linear-gradient(to_right,#80808010_1px,transparent_1px),
         linear-gradient(to_bottom,#80808010_1px,transparent_1px)]
@@ -144,9 +136,10 @@ Please pay the fee to your Master.`);
           onSubmit={handleSubmit}
           className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/20 shadow-2xl"
         >
+          {/* Top Gradient Line */}
           <div className="h-1 bg-gradient-to-r from-red-600 to-orange-500"></div>
 
-          {/* HEADER SECTION */}
+          {/* HEADER */}
           <section className="p-6 border-b border-white/20">
             <h2 className="text-center text-red-500 font-bold uppercase">
               Inter School Karate Tournament Championship 2025 - 2026
@@ -254,43 +247,58 @@ Please pay the fee to your Master.`);
 
           {/* CONSENT SECTION */}
           <section className="p-6 border-t border-white/10 space-y-4 bg-black/20">
-
             <p className="text-red-500 font-bold uppercase text-sm">
               Consent & Liability Declaration
             </p>
 
             <label className="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" name="consent1" className="mt-1 w-4 h-4 accent-red-600" />
+              <input
+                type="checkbox"
+                name="consent1"
+                className="mt-1 w-4 h-4 accent-red-600"
+              />
               <span className="text-white text-sm leading-tight">
-                I/We hereby give consent for the student to participate in the Karate Tournament. 
-                The student agrees to follow all rules and instructions.
+                I/We hereby give consent for the student to participate in the
+                Karate Tournament. The student agrees to follow all rules and
+                instructions.
               </span>
             </label>
 
             <label className="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" name="consent2" className="mt-1 w-4 h-4 accent-red-600" />
+              <input
+                type="checkbox"
+                name="consent2"
+                className="mt-1 w-4 h-4 accent-red-600"
+              />
               <span className="text-white text-sm leading-tight">
-                I, the parent/guardian, grant full consent for my child to participate,
-                understanding the physical nature of the sport.
+                I, the parent/guardian, grant full consent for my child to
+                participate, understanding the physical nature of the sport.
               </span>
             </label>
 
             <label className="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" name="consent3" className="mt-1 w-4 h-4 accent-red-600" />
+              <input
+                type="checkbox"
+                name="consent3"
+                className="mt-1 w-4 h-4 accent-red-600"
+              />
               <span className="text-white text-sm leading-tight">
-                The organizers, coaches, referees, and officials are not liable 
+                The organizers, coaches, referees, and officials are not liable
                 for any injury, accident, loss, or damage.
               </span>
             </label>
 
             <label className="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" name="consent4" className="mt-1 w-4 h-4 accent-red-600" />
+              <input
+                type="checkbox"
+                name="consent4"
+                className="mt-1 w-4 h-4 accent-red-600"
+              />
               <span className="text-white text-sm leading-tight">
-                I/We understand only basic first aid is provided and medical expenses 
+                I/We understand basic first aid is provided and medical expenses
                 are not covered.
               </span>
             </label>
-
           </section>
 
           {/* SUBMIT BUTTON */}
