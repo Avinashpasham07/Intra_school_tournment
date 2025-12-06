@@ -9,31 +9,36 @@ const RegistrationFormPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
+  // Store input values
   const [formValues, setFormValues] = useState({});
 
+  // Navbar scroll detection
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Save input value
   const saveValue = (name, value) => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
+  // FIXED INPUT COMPONENT (values now persist!)
   const SimpleInput = ({ name, placeholder }) => (
     <input
       name={name}
       placeholder={placeholder}
+      defaultValue={formValues[name] || ""}
       onBlur={(e) => saveValue(name, e.target.value)}
       className="w-full bg-transparent text-white font-mono text-sm border-b border-white/10 
                 focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
     />
   );
 
-  // -----------------------------
-  // SUBMIT HANDLER
-  // -----------------------------
+  // ---------------------------------------
+  // FORM SUBMIT HANDLER
+  // ---------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (submitting) return;
@@ -44,16 +49,27 @@ const RegistrationFormPage = () => {
     const data = {};
     fd.forEach((v, k) => (data[k] = v));
 
-    // REQUIRED FIELD CHECK
+    // REQUIRED FIELDS
     const required = [
-      "participantName", "fatherName", "motherName",
-      "schoolName", "institutionAddress", "institutionPhone",
-      "dobDD", "dobMM", "dobYYYY", "gender",
-      "masterName", "district"
+      "participantName",
+      "fatherName",
+      "motherName",
+      "schoolName",
+      "institutionAddress",
+      "institutionPhone",
+      "dobDD",
+      "dobMM",
+      "dobYYYY",
+      "gender",
+      "masterName",
+      "district",
     ];
 
-    const missing = required.filter((k) => !data[k] || data[k].trim() === "");
+    const missing = required.filter(
+      (k) => !data[k] || data[k].trim() === ""
+    );
 
+    // Checkbox validations
     ["consent1", "consent2", "consent3", "consent4"].forEach((c) => {
       if (!data[c]) missing.push(c);
     });
@@ -63,7 +79,7 @@ const RegistrationFormPage = () => {
       return;
     }
 
-    // AUTO SWITCH BACKEND
+    // Select correct backend
     const backendURL =
       window.location.hostname === "localhost"
         ? "http://localhost:4000/api/submit"
@@ -85,9 +101,10 @@ const RegistrationFormPage = () => {
         return;
       }
 
-      alert(`Form submitted successfully! ID: ${result.id}`);
+      alert(`Form submitted successfully!\nID: ${result.id}`);
 
       formEl.reset();
+      setFormValues({});
     } catch (err) {
       alert("Network error: " + err.message);
     } finally {
@@ -95,26 +112,45 @@ const RegistrationFormPage = () => {
     }
   };
 
-  // -----------------------------
+  // ---------------------------------------
   // RENDER UI
-  // -----------------------------
+  // ---------------------------------------
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-20 overflow-x-hidden">
-      <NavBar scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+
+      <NavBar
+        scrolled={scrolled}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
 
       <main className="container mx-auto px-4 pt-32 relative">
+
         <form
           ref={formRef}
           onSubmit={handleSubmit}
           className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/20 shadow-2xl"
         >
+          {/* Top red border */}
           <div className="h-1 bg-gradient-to-r from-red-600 to-orange-500" />
 
+          {/* HEADER */}
           <section className="p-6 border-b border-white/20">
-            <h2 className="text-center text-red-500 font-bold uppercase">Inter School Karate  Championship 2025 - 2026</h2>
-            <p className="text-center text-[10px] text-slate-400 uppercase">JKAI Medchal District Karate-Do Association</p>
-            <p className="text-center text-[10px] text-slate-400 uppercase">TSKA | KIO Affiliated | Govt. of India</p>
-            <h1 className="text-center text-3xl font-black italic mt-2">Certificate of Eligibility</h1>
+            <h2 className="text-center text-red-500 font-bold uppercase">
+              Inter School Karate Championship 2025 - 2026
+            </h2>
+
+            <p className="text-center text-[10px] text-slate-400 uppercase">
+              JKAI Medchal District Karate-Do Association
+            </p>
+
+            <p className="text-center text-[10px] text-slate-400 uppercase">
+              TSKA | KIO Affiliated | Govt. of India
+            </p>
+
+            <h1 className="text-center text-3xl font-black italic mt-2">
+              Certificate of Eligibility
+            </h1>
 
             <div className="mt-6">
               <label className="text-slate-400 text-sm">State:</label>
@@ -122,11 +158,12 @@ const RegistrationFormPage = () => {
 
               <label className="text-slate-400 text-sm mt-4 block">District:</label>
               <div className="font-bold border-b border-white/20">Medchal-Malkajgiri</div>
-              <input type="hidden" name="district" value="Medchal - Malchigiri" />
+
+              <input type="hidden" name="district" value="Medchal-Malkajgiri" />
             </div>
           </section>
 
-          {/* Personal Details */}
+          {/* PERSONAL DETAILS */}
           <section className="divide-y divide-white/10">
             <div className="p-4"><label className="label">Participant Name</label><SimpleInput name="participantName" /></div>
             <div className="p-4"><label className="label">Father's Name</label><SimpleInput name="fatherName" /></div>
@@ -147,42 +184,46 @@ const RegistrationFormPage = () => {
             </div>
           </section>
 
-          {/* School Details */}
+          {/* SCHOOL DETAILS */}
           <section className="divide-y divide-white/10">
             <div className="p-4"><label className="label">School Name</label><SimpleInput name="schoolName" /></div>
             <div className="p-4"><label className="label">School Address</label><SimpleInput name="institutionAddress" /></div>
             <div className="p-4"><label className="label">School Contact</label><SimpleInput name="institutionPhone" /></div>
           </section>
 
-          {/* Master */}
+          {/* MASTER */}
           <section className="p-4 border-t border-white/10">
             <label className="label">Master Name</label>
             <SimpleInput name="masterName" />
           </section>
 
-          {/* Consent */}
+          {/* CONSENT */}
           <section className="p-6 border-t border-white/10 space-y-4 bg-black/20">
+
             <p className="text-red-500 font-bold text-sm">Consent & Liability Declaration</p>
 
             {[
               {
                 name: "consent1",
-                text: "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
-
+                text:
+                  "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
               },
               {
                 name: "consent2",
-                text: "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
+                text:
+                "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
 
               },
               {
                 name: "consent3",
-                text: "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
+                text:
+                  "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
               },
               {
                 name: "consent4",
-                text: "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
-              }
+                text:
+                  "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
+              },
             ].map((c, i) => (
               <label key={i} className="flex gap-3">
                 <input type="checkbox" name={c.name} className="w-4 h-4 accent-red-600" />
@@ -191,12 +232,20 @@ const RegistrationFormPage = () => {
             ))}
           </section>
 
+          {/* SUBMIT BUTTON */}
           <section className="p-4 bg-red-600 flex justify-end">
-            <button className="font-black uppercase flex items-center gap-2 text-black hover:text-white">
+            <button
+              type="submit"
+              disabled={submitting}
+              className={`font-black uppercase flex items-center gap-2 text-black hover:text-white ${
+                submitting ? "opacity-60" : ""
+              }`}
+            >
               {submitting ? "Submitting..." : "Submit For Verification"}
               <ChevronRight />
             </button>
           </section>
+
         </form>
       </main>
     </div>
