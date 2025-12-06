@@ -152,29 +152,32 @@ const LandingPage = () => {
         </p>
 
         {/* CTA */}
-        <div className="flex justify-center lg:justify-start pt-2">
-          <button
-            onClick={() => navigate('/register')}
-            className="
-              group relative px-8 py-4
-              bg-red-600 text-white 
-              font-black text-lg uppercase tracking-wider
-              overflow-hidden 
-              shadow-[0_0_40px_-10px_rgba(220,38,38,0.5)]
-            "
-          >
-            <div className="
-                absolute inset-0 bg-white/20 
-                translate-x-[-100%] skew-x-[-15deg]
-                group-hover:translate-x-[100%]
-                transition-transform duration-700 ease-in-out
-              ">
-            </div>
-            <span className="relative flex items-center gap-2">
-              Start Registration <ChevronRight />
-            </span>
-          </button>
-        </div>
+   <div className="flex justify-center lg:justify-start pt-2">
+  <button
+    onClick={() => window.open("https://forms.gle/3LPdQWp34BhCNNF7A", "_blank")}
+    className="
+      group relative px-8 py-4
+      bg-red-600 text-white 
+      font-black text-lg uppercase tracking-wider
+      overflow-hidden 
+      shadow-[0_0_40px_-10px_rgba(220,38,38,0.5)]
+    "
+  >
+    <div
+      className="
+        absolute inset-0 bg-white/20 
+        translate-x-[-100%] skew-x-[-15deg]
+        group-hover:translate-x-[100%]
+        transition-transform duration-700 ease-in-out
+      "
+    ></div>
+
+    <span className="relative flex items-center gap-2">
+      Start Registration <ChevronRight />
+    </span>
+  </button>
+</div>
+
       </div>
 
       {/* RIGHT CARD (unchanged) */}

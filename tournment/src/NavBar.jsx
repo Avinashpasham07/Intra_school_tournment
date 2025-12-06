@@ -61,7 +61,7 @@ const NavBar = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
           ))}
 
           <button
-            onClick={() => navigate("/register")}
+             onClick={() => window.open("https://forms.gle/3LPdQWp34BhCNNF7A", "_blank")}
             className="group relative px-6 py-2 bg-white text-black font-black uppercase tracking-wider overflow-hidden hover:text-white transition-colors duration-300"
           >
             <div className="absolute inset-0 w-full h-full bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
