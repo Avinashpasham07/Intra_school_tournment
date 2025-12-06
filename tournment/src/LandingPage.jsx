@@ -63,86 +63,192 @@ const LandingPage = () => {
       />
 
       {/* ===================== HERO SECTION ===================== */}
-      <header id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[90vh]">
-        
-        {/* Animated Background Blobs */}
-      
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000"></div>
+  <header
+  id="home"
+  className="
+    relative
+    pt-24           /* reduced for mobile */
+    pb-20
+    lg:pt-40 lg:pb-32
+    overflow-hidden
+    flex flex-col justify-center
+  "
+>
+  {/* Background Blob */}
+  <div className="
+      absolute bottom-0 left-0
+      w-[280px] h-[280px]      /* smaller for mobile */
+      md:w-[450px] md:h-[450px]
+      bg-blue-600/10 
+      rounded-full blur-[100px]
+      mix-blend-screen 
+      animate-blob animation-delay-2000
+    ">
+  </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            
-            {/* Left Content */}
-            <div className="lg:w-3/5 space-y-8 relative">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md mb-4">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-300">Inter Schools Championship 2025</span>
-              </div>
+  <div className="container mx-auto px-4 md:px-6 relative z-10">
+    <div className="
+        flex flex-col 
+        lg:flex-row
+        items-center lg:items-start
+        justify-between
+        gap-14 lg:gap-20
+      "
+    >
+      {/* LEFT CONTENT */}
+      <div className="lg:w-3/5 space-y-8 text-center lg:text-left">
 
-              {/* Main Typography */}
-              <div className="relative">
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black italic tracking-tighter leading-[0.85] text-zinc-500 mix-blend-luminosity relative z-20">
-                  FIGHT <br/> FOR <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600">GLORY</span>
-                </h1>
-                {/* Hollow Text Outline */}
-                <h1 className="absolute top-2 left-2 text-6xl md:text-8xl lg:text-9xl font-black italic tracking-tighter leading-[0.85] text-transparent stroke-text opacity-60 select-none z-10 pointer-events-none">
-                  FIGHT <br/> FOR <br/> GLORY
-                </h1>
-              </div>
+        {/* Badge */}
+        <div className="
+            inline-flex items-center gap-2
+            px-4 py-1.5                  /* tightened for mobile */
+            bg-white/5 border border-white/10
+            rounded-full backdrop-blur-md
+            mx-auto lg:mx-0              /* center on mobile */
+          "
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+          </span>
+          <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-300">
+            Inter School Championship 2025
+          </span>
+        </div>
 
-              <p className="text-lg md:text-xl text-slate-400 max-w-lg font-medium leading-relaxed">
-                The Most Prestigious Martial Arts Showdown in Telangana. 
-                <span className="block mt-2 text-white">TSKA Approved • KIO Affiliated • Govt Recognized.</span>
-              </p>
+        {/* Heading */}
+        <div className="relative w-full">
+          <h1 className="
+              text-8xl md:text-7xl lg:text-9xl   /* FIXED SIZE for mobile */
+              font-black italic
+              tracking-tighter leading-[0.9]
+              text-zinc-500 mix-blend-luminosity
+              relative z-20
+            "
+          >
+            FIGHT <br /> FOR <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600">
+              GLORY
+            </span>
+          </h1>
 
-              <div className="flex flex-wrap gap-4 pt-4">
-                <button className="group relative px-8 py-4 bg-red-600 text-white font-black text-lg uppercase tracking-wider overflow-hidden shadow-[0_0_40px_-10px_rgba(220,38,38,0.5)]">
-                  <div className="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] skew-x-[-15deg] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-                  <span className="relative flex items-center gap-2">Start Registration <ChevronRight /></span>
-                </button>
-               
-              </div>
+          {/* Outline */}
+          
+        </div>
+
+        {/* Subtext */}
+        <p className="
+            text-base md:text-xl
+            text-slate-400 font-medium
+            leading-relaxed
+            max-w-xl mx-auto lg:mx-0
+          "
+        >
+          The Most Prestigious Martial Arts Showdown in Telangana.
+          <span className="block mt-2 text-white">
+            TSKA Approved • KIO Affiliated • Govt Recognized.
+          </span>
+        </p>
+
+        {/* CTA */}
+        <div className="flex justify-center lg:justify-start pt-2">
+          <button
+            onClick={() => navigate('/register')}
+            className="
+              group relative px-8 py-4
+              bg-red-600 text-white 
+              font-black text-lg uppercase tracking-wider
+              overflow-hidden 
+              shadow-[0_0_40px_-10px_rgba(220,38,38,0.5)]
+            "
+          >
+            <div className="
+                absolute inset-0 bg-white/20 
+                translate-x-[-100%] skew-x-[-15deg]
+                group-hover:translate-x-[100%]
+                transition-transform duration-700 ease-in-out
+              ">
+            </div>
+            <span className="relative flex items-center gap-2">
+              Start Registration <ChevronRight />
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* RIGHT CARD (unchanged) */}
+      {/** keep the same as before **/}
+
+
+
+
+
+
+      {/* RIGHT — DATE CARD */}
+      <div className="lg:w-2/5 w-full flex justify-center lg:justify-end">
+        <div className="relative group w-full max-w-xs sm:max-w-sm">
+
+          {/* Glow Border */}
+          <div className="
+              absolute -inset-1 
+              bg-gradient-to-r from-red-600 via-orange-500 to-red-600 
+              rounded-2xl blur 
+              opacity-25 group-hover:opacity-75 
+              transition duration-700 animate-tilt
+            ">
+          </div>
+
+          <div className="
+              relative bg-black/90 
+              border border-white/10 
+              p-6 md:p-8 rounded-2xl 
+              overflow-hidden backdrop-blur-xl
+            "
+          >
+            <div className="
+                absolute inset-0 opacity-20 
+                bg-[radial-gradient(#fff_1px,transparent_1px)] 
+                [background-size:16px_16px]
+              ">
             </div>
 
-            {/* Right Content: The "Date Card" */}
-            <div className="lg:w-2/5 w-full flex justify-center lg:justify-end">
-              <div className="relative group w-full max-w-sm">
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 via-orange-500 to-red-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-                
-                <div className="relative h-full bg-black/90 border border-white/10 p-8 rounded-2xl overflow-hidden backdrop-blur-xl">
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                  
-                  <div className="relative z-10 text-center space-y-6">
-                    <div className="inline-block p-4 rounded-full bg-white/5 border border-white/10 mb-2">
-                       <Calendar className="w-8 h-8 text-red-500" />
-                    </div>
-                    <div>
-                      <h3 className="text-7xl font-black text-white leading-none">21</h3>
-                      <p className="text-3xl font-black text-red-600 uppercase italic">December</p>
-                      <p className="text-white/50 font-mono mt-2 tracking-widest">2025 • SUNDAY</p>
-                    </div>
-                    
-                    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-                    
-                    <div className="flex justify-between items-center text-sm font-bold">
-                       <span className="text-slate-400">ENTRY CLOSES BY</span>
-                       <span className="text-red-500 font-mono">10 December</span>
-                    </div>
-                  </div>
-                </div>
+            <div className="relative z-10 text-center space-y-6">
+
+              <div className="inline-block p-4 rounded-full bg-white/5 border border-white/10 mb-2">
+                <Calendar className="w-8 h-8 text-red-500" />
               </div>
+
+              <div>
+                <h3 className="text-6xl md:text-7xl font-black text-white">21</h3>
+                <p className="text-2xl md:text-3xl font-black text-red-600 uppercase italic">
+                  December
+                </p>
+                <p className="text-white/50 font-mono mt-2 tracking-widest text-sm md:text-base">
+                  2025 • SUNDAY
+                </p>
+              </div>
+
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+              <div className="flex justify-between items-center text-sm font-bold">
+                <span className="text-slate-400">ENTRY CLOSES BY</span>
+                <span className="text-red-500 font-mono">10 December</span>
+              </div>
+
             </div>
           </div>
         </div>
-      </header>
+      </div>
+
+    </div>
+  </div>
+</header>
+
 
       {/* ===================== SCHEDULE SECTION ===================== */}
       <div
         id="schedule"
-        className="bg-red-600 py-3 transform -skew-y-2 border-y-4 border-black relative z-20 overflow-hidden"
+        className="bg-red-600 py-3 mt-15 transform -skew-y-2  relative z-20 overflow-hidden"
       >
         <div className="whitespace-nowrap flex animate-marquee">
           {[...Array(10)].map((_, i) => (
@@ -241,7 +347,7 @@ const LandingPage = () => {
 
 
         {/* ===================== CATEGORIES ===================== */}
-        <section>
+       <section>
   <div className="flex flex-col md:flex-row items-end justify-between mb-12">
     <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
       Event <span className="text-red-600 stroke-text-red">Categories</span>
@@ -265,46 +371,64 @@ const LandingPage = () => {
     ].map((cat, i) => (
       <div
         key={i}
-        className="group relative h-96 bg-[#0A0A0A] border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center p-6"
+        className="
+          group relative h-96 
+          bg-[#0A0A0A] 
+          border border-white/10 
+          rounded-2xl overflow-hidden 
+          flex flex-col items-center justify-center p-6
+          transition-all duration-500
+          hover:border-red-500/70 hover:shadow-[0_0_30px_rgba(220,38,38,0.4)]
+          hover:scale-[1.02]
+        "
       >
         {/* Large Background Number */}
-        <span className="absolute -bottom-8 -right-4 text-9xl font-black text-white/5">
+        <span className="absolute -bottom-8 -right-4 text-9xl font-black text-white/5 select-none">
           0{i + 1}
         </span>
 
         {/* Icon */}
-        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6">
+        <div className="
+          w-16 h-16 bg-white/5 rounded-full 
+          flex items-center justify-center mb-6 
+          transition-all duration-300 
+          group-hover:bg-red-600/20
+        ">
           <cat.icon className="w-8 h-8" />
         </div>
 
         {/* Title */}
-        <h3 className="text-3xl font-black uppercase italic mb-2">
+        <h3 className="text-3xl font-black uppercase italic mb-2 tracking-wide">
           {cat.title}
         </h3>
 
         {/* Description */}
-        <p className="text-slate-400 text-sm font-medium mb-6">{cat.desc}</p>
+        <p className="text-slate-400 text-sm font-medium mb-6 text-center">
+          {cat.desc}
+        </p>
 
         {/* RULES BUTTON */}
         <button
           onClick={() => window.open(cat.link, "_blank")}
           className="
-            mt-auto px-5 py-2 text-sm font-bold uppercase tracking-wide
-            text-white border border-white
-            rounded-lg shadow-[0_0_25px_rgba(220,38,38,0.4)]
-            transition-all duration-300 relative overflow-hidden group
+            mt-auto px-6 py-2 text-sm font-bold uppercase tracking-wide
+            text-white border border-white/20
+            rounded-lg transition-all duration-300 
+            relative overflow-hidden group
+            hover:border-red-500
+            hover:shadow-[0_0_20px_rgba(220,38,38,0.5)]
           "
         >
-          <span className="relative z-10 flex items-center gap-1">
+          <span className="relative z-10 flex items-center gap-2">
             View Rules <ChevronRight className="w-4 h-4" />
           </span>
 
-          {/* Shining Hover Effect */}
+          {/* Animated Shine */}
           <div
             className="
               absolute inset-0 bg-white/20 translate-x-[-120%]
               group-hover:translate-x-[120%] skew-x-12
-              transition-transform duration-700
+              transition-transform duration-[900ms]
             "
           ></div>
         </button>
@@ -313,12 +437,13 @@ const LandingPage = () => {
   </div>
 </section>
 
+
 {/* ===================== TOURNAMENT EVENTS TABLE ===================== */}
 <section className="rounded-3xl bg-[#0A0A0A] border border-white/10 p-8 mt-20">
   <h2 className="text-4xl md:text-5xl font-black uppercase italic text-center mb-10">
     <span className="text-white">List of the</span>{" "}
     <span className="text-red-600">Tournament Events</span>
-    <span className="text-sm block text-slate-400 mt-1">(JKAI Rules)</span>
+    <span className="text-sm block text-slate-400 mt-1">(As Per WKF Rules)</span>
   </h2>
 
   {/* Outer Grid */}
@@ -344,15 +469,15 @@ const LandingPage = () => {
     <div className="bg-black/40 border border-white/10 rounded-2xl p-6">
       <h3 className="text-xl font-black uppercase text-red-500 mb-4">KUMITE (Sparring)</h3>
       <ul className="space-y-2 text-slate-300 font-mono text-sm">
-        <li>10. Under 8 Yrs (B & G)</li>
-        <li>11. Under 10 Yrs (B & G)</li>
-        <li>12. Under 12 Yrs (B & G)</li>
-        <li>13. Under 14 Yrs (B & G)</li>
-        <li>14. Under 16 Yrs (B & G)</li>
-        <li>15. Under 18 Yrs (B & G)</li>
-        <li>16. Above 18 Yrs (B & G)</li>
-        <li>17. Brown Belts (B & G)</li>
-        <li>18. Black Belts (B & G)</li>
+        <li>1. Under 8 Yrs (B & G)</li>
+        <li>2. Under 10 Yrs (B & G)</li>
+        <li>3. Under 12 Yrs (B & G)</li>
+        <li>4. Under 14 Yrs (B & G)</li>
+        <li>5. Under 16 Yrs (B & G)</li>
+        <li>6. Under 18 Yrs (B & G)</li>
+        <li>7. Above 18 Yrs (B & G)</li>
+        <li>8. Brown Belts (B & G)</li>
+        <li>9. Black Belts (B & G)</li>
       </ul>
     </div>
 
@@ -361,27 +486,26 @@ const LandingPage = () => {
       <h3 className="text-xl font-black uppercase text-red-500 mb-4">Notes</h3>
       <ul className="space-y-4 text-slate-300 font-mono text-sm leading-relaxed">
         <li>1) Each Group has 4 Members</li>
-        <li>2) <span className="text-red-400">1st Place</span> & <span className="text-red-400">2nd Place</span></li>
-        <li>3) <span className="text-red-400">3rd Place + 3rd Place</span></li>
+        <li>2) <span className="text-red-400">1st Place</span>,<span className="text-red-400">2nd Place</span> & <span className="text-red-400">3rd Place</span></li>
+       
       </ul>
     </div>
   </div>
 
   {/* FOOTER INFO BAR */}
   <div className="grid md:grid-cols-3 gap-4 mt-10 text-sm font-bold text-center">
-    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+    <div className="bg-black/40 border border-red-600 text-white p-3 rounded-lg">
       1) Lunch Self Only
     </div>
-    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+    <div className="bg-black/40 border border-red-600 text-white p-3 rounded-lg">
       2) Entry Fee for Event Rs. 1000
     </div>
-    <div className="bg-red-600/20 border border-red-600 text-white p-3 rounded-lg">
+    <div className="bg-black/40 border border-red-600 text-white p-3 rounded-lg">
       3) Gloves Compulsory
     </div>
   </div>
 </section>
 
-        {/* ===================== OFFICIALS (With Images) ===================== */}
        <section className="relative rounded-3xl bg-gradient-to-br from-zinc-900 to-black border border-white/10 p-12 overflow-hidden">
   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-50"></div>
   
@@ -392,39 +516,153 @@ const LandingPage = () => {
     <div className="w-24 h-1 bg-red-600 mx-auto rounded-full"></div>
   </div>
 
-  <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+  {/* 3 IN ONE ROW */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
 
-    {/* OFFICIAL 1 — MASTER */}
+    {/* OFFICIAL 1 — GOVIND */}
     <div className="text-center group">
-      <div className="relative w-40 h-40 mx-auto rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)]  transition-transform duration-500">
+      <div className="relative w-32 h-44 mx-auto rounded-xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)] transition-transform duration-500 group-hover:scale-105">
+        <img 
+          src="/Anand.png"
+          alt="Govind Official"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="text-2xl font-bold text-white mt-6 mb-1">Shihan Anand Rathana</h3>
+      <p className="text-slate-500 text-sm font-mono">JKA India Cheif</p>
+      <p className="text-slate-500 text-sm font-mono">Offical Commission</p>
+    </div>
+
+    {/* OFFICIAL 2 — MASTER */}
+    <div className="text-center group">
+      <div className="relative w-32 h-44 mx-auto rounded-xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)] transition-transform duration-500 group-hover:scale-105">
         <img 
           src="/master.png"
           alt="Master Official"
-          className="w-full h-full object-fit"
+          className="w-full h-full object-cover"
         />
       </div>
       <h3 className="text-2xl font-bold text-white mt-6 mb-1">Rapolu Sudershan</h3>
- 
-      <p className="text-slate-500 text-sm font-mono">Tournment Cheif Judge
-</p>
+      <p className="text-slate-500 text-sm font-mono">Tournament Chief Judge</p>
+      <p className="text-slate-500 text-sm font-mono">KIO Tournament Commission</p>
     </div>
 
-    {/* OFFICIAL 2 — GOVIND */}
+    {/* OFFICIAL 3 — GOVIND SECOND CARD */}
     <div className="text-center group">
-      <div className="relative w-40 h-40 mx-auto rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)]  transition-transform duration-500">
+      <div className="relative w-32 h-44 mx-auto rounded-xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)] transition-transform duration-500 group-hover:scale-105">
         <img 
           src="/govind.png"
           alt="Govind Official"
-          className="w-full h-full object-fit"
+          className="w-full h-full object-cover"
         />
       </div>
       <h3 className="text-2xl font-bold text-white mt-6 mb-1">G. Govind</h3>
-
-      <p className="text-slate-500 text-sm font-mono">Tournment Cheif Organizer</p>
+      <p className="text-slate-500 text-sm font-mono">Tournament Chief Organizer</p>
+      <p className="text-slate-500 text-sm font-mono">JKAI T.G Board</p>
     </div>
 
   </div>
 </section>
+
+{/* ===================== BOARD OF DIRECTORS ===================== */}
+<section id="directors" className="mt-24">
+  <div className="flex flex-col md:flex-row items-end justify-between mb-12 overflow-hidden">
+    <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
+      Board of <span className="text-red-600 stroke-text-red">Directors (JKAI)</span>
+    </h2>
+  </div>
+
+  {/* 8 in one row on large screens */}
+  <div
+    className="
+      grid grid-cols-2 sm:grid-cols-3 
+      md:grid-cols-4 lg:grid-cols-8 
+      gap-4 md:gap-6
+    "
+  >
+    {[
+      {
+        name: "Dayanand Kumar",
+        role: "T.G Chief Instructor",
+        img: "/1.jpg",
+      },
+      {
+        name: "K.Srinivas Chary",
+        role: "T.G Board",
+        img: "/2.jpg",
+      },
+      {
+        name: "Bhavi Dhanraj",
+        role: "T.G Board",
+        img: "/3.jpg",
+      },
+      {
+        name: "K.Ramesh Goud",
+        role: "T.G Board",
+        img: "/4.jpg",
+      },
+      {
+        name: "P.Samson",
+        role: "T.G Board",
+        img: "/5.jpg",
+      },
+    
+      {
+        name: "D.Narsimha Chary",
+        role: "T.G Board",
+        img: "/6.jpg",
+      },
+        {
+        name: "G. Govind",
+        role: "T.G Board",
+        img: "/govind.png",
+      },
+      {
+        name: "K.Shanker",
+        role: "T.G Board",
+        img: "/7.jpg", // ← Add your image here
+      },
+    ].map((member, i) => (
+      <div
+        key={i}
+        className="
+          group relative bg-[#0A0A0A] border border-white/10 
+          rounded-xl p-4 
+          flex flex-col items-center text-center 
+          hover:border-red-600/50 
+          transition-all duration-300 overflow-hidden
+        "
+      >
+        {/* IMAGE */}
+        <div
+          className="
+            relative w-20 h-28 rounded-lg overflow-hidden 
+            border-2 border-white/10 
+            transition-transform duration-300
+          "
+        >
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* NAME */}
+        <h3 className="text-sm font-black uppercase italic text-white mt-2">
+          {member.name}
+        </h3>
+
+        {/* ROLE */}
+        <p className="text-slate-300 text-[11px] mt-1 leading-tight">
+          {member.role}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
+
 
 
         {/* ===================== TEAM & MEDICAL (With Images) ===================== */}
@@ -433,7 +671,7 @@ const LandingPage = () => {
 <section id="team" className="mt-24">
   <div className="flex flex-col md:flex-row items-end justify-between mb-12 overflow-hidden">
     <h2 className="text-4xl md:text-6xl font-black uppercase italic text-white">
-      Our <span className="text-red-600 stroke-text-red">Team</span>
+      Referees' <span className="text-red-600 stroke-text-red">Committee</span>
     </h2>
    
   </div>

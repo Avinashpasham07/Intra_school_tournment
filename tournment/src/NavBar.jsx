@@ -43,7 +43,7 @@ const NavBar = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          {["Home", "Schedule", "Venue", "Contact"].map((item) => (
+          {["Home", , "Venue", "Contact"].map((item) => (
             <span
               key={item}
               onClick={() => {
@@ -83,7 +83,7 @@ const NavBar = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
       {/* Mobile Dropdown */}
       {isMenuOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 py-6 px-6 flex flex-col gap-6">
-          {["Home", "Schedule", "Venue", "Contact"].map((item) => (
+          {["Home", "Venue", "Contact"].map((item) => (
             <span
               key={item}
               onClick={() => {
