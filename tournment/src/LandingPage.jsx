@@ -233,7 +233,7 @@ const LandingPage = () => {
 
               <div className="flex justify-between items-center text-sm font-bold">
                 <span className="text-slate-400">ENTRY CLOSES BY</span>
-                <span className="text-red-500 font-mono">10 December</span>
+                <span className="text-red-500 font-mono">12 December</span>
               </div>
 
             </div>
