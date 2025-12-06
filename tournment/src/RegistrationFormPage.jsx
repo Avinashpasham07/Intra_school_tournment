@@ -24,13 +24,13 @@ const RegistrationFormPage = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  // FIXED INPUT COMPONENT (values now persist!)
+  // ✅ FIXED CONTROLLED INPUT (always updates correctly)
   const SimpleInput = ({ name, placeholder }) => (
     <input
       name={name}
       placeholder={placeholder}
-      defaultValue={formValues[name] || ""}
-      onBlur={(e) => saveValue(name, e.target.value)}
+      value={formValues[name] || ""}           // controlled value
+      onChange={(e) => saveValue(name, e.target.value)} // updates while typing
       className="w-full bg-transparent text-white font-mono text-sm border-b border-white/10 
                 focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
     />
@@ -43,11 +43,7 @@ const RegistrationFormPage = () => {
     e.preventDefault();
     if (submitting) return;
 
-    const formEl = formRef.current;
-    const fd = new FormData(formEl);
-
-    const data = {};
-    fd.forEach((v, k) => (data[k] = v));
+    const data = { ...formValues };
 
     // REQUIRED FIELDS
     const required = [
@@ -103,7 +99,7 @@ const RegistrationFormPage = () => {
 
       alert(`Form submitted successfully!\nID: ${result.id}`);
 
-      formEl.reset();
+      formRef.current.reset();
       setFormValues({});
     } catch (err) {
       alert("Network error: " + err.message);
@@ -206,27 +202,34 @@ const RegistrationFormPage = () => {
               {
                 name: "consent1",
                 text:
-                  "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
+                  "I/We hereby give consent for the student to participate in the Karate Tournament. The student agrees to follow all instructions."
               },
               {
                 name: "consent2",
                 text:
-                "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
-
+                  "I, the parent/guardian, grant full consent for my child to participate, understanding the physical nature of the sport."
               },
               {
                 name: "consent3",
                 text:
-                  "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
+                  "I/We acknowledge that the organizing committee, officials, and referees are not responsible for injuries or losses. Participation is at own risk."
               },
               {
                 name: "consent4",
                 text:
-                  "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
+                  "I/We understand that only basic first aid is provided and medical expenses are not covered."
               },
             ].map((c, i) => (
               <label key={i} className="flex gap-3">
-                <input type="checkbox" name={c.name} className="w-4 h-4 accent-red-600" />
+                <input
+                  type="checkbox"
+                  name={c.name}
+                  checked={!!formValues[c.name]}
+                  onChange={(e) =>
+                    saveValue(c.name, e.target.checked ? "yes" : "")
+                  }
+                  className="w-4 h-4 accent-red-600"
+                />
                 <span className="text-white text-sm">{c.text}</span>
               </label>
             ))}
