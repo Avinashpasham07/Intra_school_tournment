@@ -24,20 +24,20 @@ const RegistrationFormPage = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ FIXED CONTROLLED INPUT (always updates correctly)
+  // Controlled input
   const SimpleInput = ({ name, placeholder }) => (
     <input
       name={name}
       placeholder={placeholder}
-      value={formValues[name] || ""}           // controlled value
-      onChange={(e) => saveValue(name, e.target.value)} // updates while typing
+      value={formValues[name] || ""}
+      onChange={(e) => saveValue(name, e.target.value)}
       className="w-full bg-transparent text-white font-mono text-sm border-b border-white/10 
-                focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
+                 focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
     />
   );
 
   // ---------------------------------------
-  // FORM SUBMIT HANDLER
+  // SUBMIT HANDLER
   // ---------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const RegistrationFormPage = () => {
 
     const data = { ...formValues };
 
-    // REQUIRED FIELDS
+    // REQUIRED FIELDS (district REMOVED)
     const required = [
       "participantName",
       "fatherName",
@@ -57,13 +57,10 @@ const RegistrationFormPage = () => {
       "dobMM",
       "dobYYYY",
       "gender",
-      "masterName",
-      "district",
+      "masterName"
     ];
 
-    const missing = required.filter(
-      (k) => !data[k] || data[k].trim() === ""
-    );
+    const missing = required.filter((k) => !data[k] || data[k].trim() === "");
 
     // Checkbox validations
     ["consent1", "consent2", "consent3", "consent4"].forEach((c) => {
@@ -127,7 +124,6 @@ const RegistrationFormPage = () => {
           onSubmit={handleSubmit}
           className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/20 shadow-2xl"
         >
-          {/* Top red border */}
           <div className="h-1 bg-gradient-to-r from-red-600 to-orange-500" />
 
           {/* HEADER */}
