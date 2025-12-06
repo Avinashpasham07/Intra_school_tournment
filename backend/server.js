@@ -12,7 +12,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3000",
-      "https://jka-inter-school-tournment.vercel.app"
+      "https://jka-inter-school-tournment.vercel.app/"
     ],
   })
 );
