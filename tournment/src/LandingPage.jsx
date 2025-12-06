@@ -15,6 +15,7 @@ import {
   Twitter,
   Youtube,
   Linkedin,
+  Phone, Mail
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
@@ -765,6 +766,7 @@ const LandingPage = () => {
       </main>
 
       {/* ===================== CONTACT SECTION ===================== */}
+{/* ===================== CONTACT SECTION ===================== */}
 <footer
   id="contact"
   className="bg-black border-t border-white/10 pt-20 pb-12 relative overflow-hidden"
@@ -773,68 +775,88 @@ const LandingPage = () => {
   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-40"></div>
 
   <div className="container mx-auto px-4 relative z-10">
+
     {/* ---------- TOP ROW ---------- */}
     <div className="flex flex-col md:flex-row justify-between items-center mb-16 text-center md:text-left">
+
       {/* Brand */}
       <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter mb-6 md:mb-0">
         JKAI <span className="text-red-600">TG</span>
       </h2>
 
       {/* Social Icons */}
-   <div className="flex gap-6">
-  {[
-    { Icon: Instagram, url: "https://www.instagram.com/jka_medchal.dist/" },
-    { Icon: Facebook, url: "https://www.facebook.com/groups/1492975447736405/" },
-    { Icon: Twitter, url: "https://x.com/KarateMedchal" },
-    { Icon: Linkedin, url: "https://www.linkedin.com/in/karate-academy-jka-medchal-dist-930147227/" }, // Using User icon for LinkedIn (you can replace with LinkedIn icon if you import)
-    { Icon: Youtube, url: "https://www.youtube.com/channel/UC-CkD3hOFzambpvQle_ljLg" }, // Replace with Youtube icon if you have one
-  ].map(({ Icon, url }, i) => (
-    <a
-      key={i}
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        relative w-12 h-12 flex items-center justify-center rounded-full
-        border border-white/20 overflow-hidden
-        transition-all duration-300 group
-      "
-    >
-      {/* Hover glow */}
-      <div
-        className="
-          absolute inset-0 bg-gradient-to-br from-red-600/40 to-orange-500/40
-          opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500
-        "
-      ></div>
+      <div className="flex gap-6">
+        {[
+          { Icon: Instagram, url: "https://www.instagram.com/jka_medchal.dist/" },
+          { Icon: Facebook, url: "https://www.facebook.com/groups/1492975447736405/" },
+          { Icon: Twitter, url: "https://x.com/KarateMedchal" },
+          { Icon: Linkedin, url: "https://www.linkedin.com/in/karate-academy-jka-medchal-dist-930147227/" },
+          { Icon: Youtube, url: "https://www.youtube.com/channel/UC-CkD3hOFzambpvQle_ljLg" },
+        ].map(({ Icon, url }, i) => (
+          <a
+            key={i}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              relative w-12 h-12 flex items-center justify-center rounded-full
+              border border-white/20 overflow-hidden
+              transition-all duration-300 group
+            "
+          >
+            <div
+              className="
+                absolute inset-0 bg-gradient-to-br from-red-600/40 to-orange-500/40
+                opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500
+              "
+            ></div>
 
-      {/* Subtle bg hover */}
-      <div
-        className="
-          absolute inset-0 bg-white/10 opacity-0 
-          group-hover:opacity-20 transition-all duration-300
-        "
-      ></div>
+            <div
+              className="
+                absolute inset-0 bg-white/10 opacity-0 
+                group-hover:opacity-20 transition-all duration-300
+              "
+            ></div>
 
-      {/* Icon */}
-      <Icon
-        className="
-          w-5 h-5 text-white relative z-10
-          transition-all duration-300
-          group-hover:scale-110 group-hover:text-red-500
-        "
-      />
+            <Icon
+              className="
+                w-5 h-5 text-white relative z-10
+                transition-all duration-300
+                group-hover:scale-110 group-hover:text-red-500
+              "
+            />
 
-      {/* Border glow */}
-      <div
-        className="
-          absolute inset-0 rounded-full border border-red-600/0
-          group-hover:border-red-600/70 transition-all duration-500
-        "
-      ></div>
-    </a>
-  ))}
-</div>
+            <div
+              className="
+                absolute inset-0 rounded-full border border-red-600/0
+                group-hover:border-red-600/70 transition-all duration-500
+              "
+            ></div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+
+    {/* ---------- CONTACT INFO ROW ---------- */}
+    <div className="flex flex-col md:flex-row items-center gap-6 text-slate-300 text-sm font-mono mb-8">
+
+      {/* Phone */}
+      <p className="flex items-center gap-2">
+        <Phone className="w-4 h-4 text-red-500" />
+        <span className="text-white font-bold">+91 97043 65372</span>
+      </p>
+
+      {/* Email */}
+      <p className="flex items-center gap-2">
+        <Mail className="w-4 h-4 text-red-500" />
+        <a
+          href="mailto:jkaimedchaldist@gmail.com"
+          className="text-white font-bold hover:text-red-500 transition-colors"
+        >
+          Jkakarateacademy.org.in
+        </a>
+      </p>
 
     </div>
 
@@ -849,9 +871,6 @@ const LandingPage = () => {
         © 2025 JKAI Telangana State. All Rights Reserved.
       </p>
 
-      {/* Footer Links */}
-      
-
       {/* Developer Credit */}
       <p className="text-center md:text-right hover:text-red-500 transition-colors">
         Designed & Developed by{" "}
@@ -861,6 +880,7 @@ const LandingPage = () => {
     </div>
   </div>
 </footer>
+
 
       {/* GLOBAL STYLES */}
       <style>{`
