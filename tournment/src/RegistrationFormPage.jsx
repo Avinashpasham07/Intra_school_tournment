@@ -24,17 +24,36 @@ const RegistrationFormPage = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Controlled input
+  // FIXED: Uncontrolled input for mobile keyboard issue
   const SimpleInput = ({ name, placeholder }) => (
     <input
       name={name}
       placeholder={placeholder}
-      value={formValues[name] || ""}
-      onChange={(e) => saveValue(name, e.target.value)}
+      defaultValue={formValues[name] || ""}
+      onBlur={(e) => saveValue(name, e.target.value)}
       className="w-full bg-transparent text-white font-mono text-sm border-b border-white/10 
                  focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
     />
   );
+
+  // Friendly names for required fields
+  const fieldNames = {
+    participantName: "Participant Name",
+    fatherName: "Father's Name",
+    motherName: "Mother's Name",
+    schoolName: "School Name",
+    institutionAddress: "School Address",
+    institutionPhone: "School Contact",
+    dobDD: "Date of Birth (DD)",
+    dobMM: "Date of Birth (MM)",
+    dobYYYY: "Date of Birth (YYYY)",
+    gender: "Gender",
+    masterName: "Master Name",
+    consent1: "Consent 1",
+    consent2: "Consent 2",
+    consent3: "Consent 3",
+    consent4: "Consent 4",
+  };
 
   // ---------------------------------------
   // SUBMIT HANDLER
@@ -45,7 +64,7 @@ const RegistrationFormPage = () => {
 
     const data = { ...formValues };
 
-    // REQUIRED FIELDS (district REMOVED)
+    // REQUIRED FIELDS
     const required = [
       "participantName",
       "fatherName",
@@ -57,7 +76,7 @@ const RegistrationFormPage = () => {
       "dobMM",
       "dobYYYY",
       "gender",
-      "masterName"
+      "masterName",
     ];
 
     const missing = required.filter((k) => !data[k] || data[k].trim() === "");
@@ -68,7 +87,8 @@ const RegistrationFormPage = () => {
     });
 
     if (missing.length > 0) {
-      alert("Please complete: " + missing.join(", "));
+      const readable = missing.map((key) => fieldNames[key] || key);
+      alert("Please complete: " + readable.join(", "));
       return;
     }
 
@@ -198,23 +218,22 @@ const RegistrationFormPage = () => {
               {
                 name: "consent1",
                 text:
-                 "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
-
+                  "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event.",
               },
               {
                 name: "consent2",
                 text:
-                  "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
+                  "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport.",
               },
               {
                 name: "consent3",
                 text:
-                  "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
+                  "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk.",
               },
               {
                 name: "consent4",
                 text:
-                  "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
+                  "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage.",
               },
             ].map((c, i) => (
               <label key={i} className="flex gap-3">
