@@ -6,25 +6,26 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// ---------------- CORS ----------------
+// CORS FIXED
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "http://localhost:3000",
-      "https://jka-inter-school-tournment.vercel.app",
-      "https://intra-school-tournment.onrender.com"
+      "https://intra-school-tournment.vercel.app",
     ],
     methods: ["GET", "POST"],
-    credentials: false
   })
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ---------------- MONGO ----------------
-mongoose.set("strictQuery", false);
+// HEALTH CHECK
+app.get("/", (req, res) => {
+  res.send("Backend running");
+});
+
+// MONGO
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("🔥 MongoDB Connected"))
@@ -33,7 +34,7 @@ mongoose
     process.exit(1);
   });
 
-// ---------------- SCHEMA ----------------
+// Schema
 const submissionSchema = new mongoose.Schema({
   formId: {
     type: String,
@@ -46,7 +47,7 @@ const submissionSchema = new mongoose.Schema({
 
 const Submission = mongoose.model("Submission", submissionSchema);
 
-// ---------------- ROUTE ----------------
+// Submit Route
 app.post("/api/submit", async (req, res) => {
   try {
     const fields = req.body;
@@ -65,7 +66,6 @@ app.post("/api/submit", async (req, res) => {
   }
 });
 
-// ---------------- START ----------------
 app.listen(PORT, () =>
   console.log(`🚀 Server running → http://localhost:${PORT}`)
 );
