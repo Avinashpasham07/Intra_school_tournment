@@ -12,10 +12,11 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3000",
-      "https://intra-school-tournment.vercel.app",
+      "https://jka-inter-school-tournment.vercel.app",
       "https://intra-school-tournment.onrender.com"
     ],
     methods: ["GET", "POST"],
+    credentials: false
   })
 );
 
@@ -50,10 +51,14 @@ app.post("/api/submit", async (req, res) => {
   try {
     const fields = req.body;
 
+    if (!fields || Object.keys(fields).length === 0) {
+      return res.status(400).json({ ok: false, error: "Empty form submitted" });
+    }
+
     const doc = new Submission({ fields });
     const saved = await doc.save();
 
-    return res.json({ ok: true, id: saved._id, saved });
+    return res.json({ ok: true, id: saved._id });
   } catch (err) {
     console.error("❌ Submit Error:", err);
     res.status(500).json({ ok: false, error: err.message });

@@ -8,6 +8,7 @@ const RegistrationFormPage = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
@@ -23,88 +24,70 @@ const RegistrationFormPage = () => {
   const SimpleInput = ({ name, placeholder }) => (
     <input
       name={name}
-      defaultValue={formValues[name] || ""}
       placeholder={placeholder}
       onBlur={(e) => saveValue(name, e.target.value)}
       className="w-full bg-transparent text-white font-mono text-sm border-b border-white/10 
-                 focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
+                focus:border-red-600 focus:outline-none py-1 placeholder-white/20"
     />
   );
 
-  // ---------------------------------------------------
-  // HANDLE FORM SUBMISSION
-  // ---------------------------------------------------
+  // -----------------------------
+  // SUBMIT HANDLER
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (submitting) return;
 
     const formEl = formRef.current;
-    const formDataObj = {};
+    const fd = new FormData(formEl);
 
-    new FormData(formEl).forEach((value, key) => {
-      formDataObj[key] = value;
-    });
+    const data = {};
+    fd.forEach((v, k) => (data[k] = v));
 
-    const requiredFields = [
-      "participantName",
-      "fatherName",
-      "motherName",
-      "schoolName",
-      "institutionAddress",
-      "institutionPhone",
-      "dobDD",
-      "dobMM",
-      "dobYYYY",
-      "gender",
-      "masterName",
-      "district",
+    // REQUIRED FIELD CHECK
+    const required = [
+      "participantName", "fatherName", "motherName",
+      "schoolName", "institutionAddress", "institutionPhone",
+      "dobDD", "dobMM", "dobYYYY", "gender",
+      "masterName", "district"
     ];
 
-    const consentChecks = ["consent1", "consent2", "consent3", "consent4"];
+    const missing = required.filter((k) => !data[k] || data[k].trim() === "");
 
-    const missing = [];
-
-    requiredFields.forEach((key) => {
-      if (!formDataObj[key] || formDataObj[key].trim() === "") missing.push(key);
-    });
-
-    consentChecks.forEach((key) => {
-      if (!formDataObj[key]) missing.push(key);
+    ["consent1", "consent2", "consent3", "consent4"].forEach((c) => {
+      if (!data[c]) missing.push(c);
     });
 
     if (missing.length > 0) {
-      alert("Please fill the required fields: " + missing.join(", "));
+      alert("Please complete: " + missing.join(", "));
       return;
     }
+
+    // AUTO SWITCH BACKEND
+    const backendURL =
+      window.location.hostname === "localhost"
+        ? "http://localhost:4000/api/submit"
+        : "https://intra-school-tournment.onrender.com/api/submit";
 
     try {
       setSubmitting(true);
 
-      const backendURL =
-        window.location.hostname === "localhost"
-          ? "http://localhost:4000/api/submit"
-          : "https://intra-school-tournment.onrender.com/api/submit";
-
       const resp = await fetch(backendURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formDataObj),
+        body: JSON.stringify(data),
       });
 
       const result = await resp.json();
 
       if (!result.ok) {
         alert("Submission failed: " + result.error);
-        setSubmitting(false);
         return;
       }
 
-      alert(
-        `Form submitted successfully!\nID: ${result.id}\nPlease pay the fee to your Master.`
-      );
+      alert(`Form submitted successfully! ID: ${result.id}`);
 
       formEl.reset();
-      setFormValues({});
     } catch (err) {
       alert("Network error: " + err.message);
     } finally {
@@ -112,92 +95,45 @@ const RegistrationFormPage = () => {
     }
   };
 
-  // ---------------------------------------------------
+  // -----------------------------
   // RENDER UI
-  // ---------------------------------------------------
+  // -----------------------------
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-20 overflow-x-hidden">
-      {/* Background Grid */}
-      <div
-        className="fixed inset-0 z-0 bg-[linear-gradient(to_right,#80808010_1px,transparent_1px),
-        linear-gradient(to_bottom,#80808010_1px,transparent_1px)]
-        bg-[size:24px_24px]"
-      />
+      <NavBar scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-      <NavBar
-        scrolled={scrolled}
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      />
-
-      <main className="container mx-auto px-4 pt-32 relative z-20">
+      <main className="container mx-auto px-4 pt-32 relative">
         <form
           ref={formRef}
           onSubmit={handleSubmit}
           className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/20 shadow-2xl"
         >
-          {/* Top Gradient Line */}
-          <div className="h-1 bg-gradient-to-r from-red-600 to-orange-500"></div>
+          <div className="h-1 bg-gradient-to-r from-red-600 to-orange-500" />
 
-          {/* HEADER */}
           <section className="p-6 border-b border-white/20">
-            <h2 className="text-center text-red-500 font-bold uppercase">
-              Inter School Karate Tournament Championship 2025 - 2026
-            </h2>
-            <p className="text-[10px] text-center text-slate-500 uppercase">
-              JKAI Medchal District Karate-Do Association
-            </p>
-            <p className="text-[10px] text-center text-slate-500 uppercase">
-              TSKA | KIO Affiliated | Govt. of India (MOS&Y)
-            </p>
-
-            <h1 className="text-center text-3xl font-black italic mt-2">
-              Certificate of Eligibility
-            </h1>
+            <h2 className="text-center text-red-500 font-bold uppercase">Inter School Karate  Championship 2025 - 2026</h2>
+            <p className="text-center text-[10px] text-slate-400 uppercase">JKAI Medchal District Karate-Do Association</p>
+            <p className="text-center text-[10px] text-slate-400 uppercase">TSKA | KIO Affiliated | Govt. of India</p>
+            <h1 className="text-center text-3xl font-black italic mt-2">Certificate of Eligibility</h1>
 
             <div className="mt-6">
-              <label className="text-slate-400 uppercase text-sm">State:</label>
-              <div className="font-bold text-white border-b border-white/20">
-                Telangana
-              </div>
+              <label className="text-slate-400 text-sm">State:</label>
+              <div className="font-bold border-b border-white/20">Telangana</div>
 
-              <label className="text-slate-400 uppercase text-sm mt-4 block">
-                District:
-              </label>
-              <div className="font-bold text-white border-b border-white/20">
-                Medchal
-              </div>
-              <input type="hidden" name="district" value="Medchal" />
+              <label className="text-slate-400 text-sm mt-4 block">District:</label>
+              <div className="font-bold border-b border-white/20">Medchal-Malkajgiri</div>
+              <input type="hidden" name="district" value="Medchal - Malchigiri" />
             </div>
           </section>
 
-          {/* PERSONAL DETAILS */}
+          {/* Personal Details */}
           <section className="divide-y divide-white/10">
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                Participant Name
-              </label>
-              <SimpleInput name="participantName" placeholder="FULL NAME" />
-            </div>
+            <div className="p-4"><label className="label">Participant Name</label><SimpleInput name="participantName" /></div>
+            <div className="p-4"><label className="label">Father's Name</label><SimpleInput name="fatherName" /></div>
+            <div className="p-4"><label className="label">Mother's Name</label><SimpleInput name="motherName" /></div>
 
             <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                Father's Name
-              </label>
-              <SimpleInput name="fatherName" />
-            </div>
-
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                Mother's Name
-              </label>
-              <SimpleInput name="motherName" />
-            </div>
-
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                Date of Birth
-              </label>
+              <label className="label">Date of Birth</label>
               <div className="flex gap-2">
                 <SimpleInput name="dobDD" placeholder="DD" />
                 <SimpleInput name="dobMM" placeholder="MM" />
@@ -206,109 +142,57 @@ const RegistrationFormPage = () => {
             </div>
 
             <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                Gender
-              </label>
+              <label className="label">Gender</label>
               <SimpleInput name="gender" placeholder="M / F" />
             </div>
           </section>
 
-          {/* SCHOOL DETAILS */}
+          {/* School Details */}
           <section className="divide-y divide-white/10">
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                School Name
-              </label>
-              <SimpleInput name="schoolName" />
-            </div>
-
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                School Address
-              </label>
-              <SimpleInput name="institutionAddress" />
-            </div>
-
-            <div className="p-4">
-              <label className="text-[10px] text-slate-400 uppercase">
-                School Contact
-              </label>
-              <SimpleInput name="institutionPhone" />
-            </div>
+            <div className="p-4"><label className="label">School Name</label><SimpleInput name="schoolName" /></div>
+            <div className="p-4"><label className="label">School Address</label><SimpleInput name="institutionAddress" /></div>
+            <div className="p-4"><label className="label">School Contact</label><SimpleInput name="institutionPhone" /></div>
           </section>
 
-          {/* MASTER */}
+          {/* Master */}
           <section className="p-4 border-t border-white/10">
-            <label className="text-[10px] text-slate-400 uppercase">
-              Master Name
-            </label>
+            <label className="label">Master Name</label>
             <SimpleInput name="masterName" />
           </section>
 
-          {/* CONSENT SECTION */}
+          {/* Consent */}
           <section className="p-6 border-t border-white/10 space-y-4 bg-black/20">
-            <p className="text-red-500 font-bold uppercase text-sm">
-              Consent & Liability Declaration
-            </p>
+            <p className="text-red-500 font-bold text-sm">Consent & Liability Declaration</p>
 
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                name="consent1"
-                className="mt-1 w-4 h-4 accent-red-600"
-              />
-              <span className="text-white text-sm leading-tight">
-                I/We hereby give consent for the student to participate in the
-                Karate Tournament. The student agrees to follow all rules and
-                instructions.
-              </span>
-            </label>
+            {[
+              {
+                name: "consent1",
+                text: "I/We hereby give consent for the student to participate in the Karate Tournament. The student affirms voluntary participation and agrees to follow all rules and instructions during the event."
 
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                name="consent2"
-                className="mt-1 w-4 h-4 accent-red-600"
-              />
-              <span className="text-white text-sm leading-tight">
-                I, the parent/guardian, grant full consent for my child to
-                participate, understanding the physical nature of the sport.
-              </span>
-            </label>
+              },
+              {
+                name: "consent2",
+                text: "I, the parent/guardian, grant full consent for my child to participate in the tournament, understanding the physical nature of the sport."
 
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                name="consent3"
-                className="mt-1 w-4 h-4 accent-red-600"
-              />
-              <span className="text-white text-sm leading-tight">
-                The organizers, coaches, referees, and officials are not liable
-                for any injury, accident, loss, or damage.
-              </span>
-            </label>
-
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                name="consent4"
-                className="mt-1 w-4 h-4 accent-red-600"
-              />
-              <span className="text-white text-sm leading-tight">
-                I/We understand basic first aid is provided and medical expenses
-                are not covered.
-              </span>
-            </label>
+              },
+              {
+                name: "consent3",
+                text: "I/We acknowledge that the Tournament Organising Committee, Tournament Commission, officials, coaches, referees, and associated personnel shall not be liable for any injury, accident, loss, or damage sustained by the student during travel, participation, training, warm-up, or any event-related activity. Participation is entirely at the student’s/parent’s own risk."
+              },
+              {
+                name: "consent4",
+                text: "I/We understand that basic first aid will be provided, but the organisers are not responsible for medical expenses or insurance coverage."
+              }
+            ].map((c, i) => (
+              <label key={i} className="flex gap-3">
+                <input type="checkbox" name={c.name} className="w-4 h-4 accent-red-600" />
+                <span className="text-white text-sm">{c.text}</span>
+              </label>
+            ))}
           </section>
 
-          {/* SUBMIT BUTTON */}
           <section className="p-4 bg-red-600 flex justify-end">
-            <button
-              type="submit"
-              disabled={submitting}
-              className={`flex items-center gap-2 font-black uppercase text-black hover:text-white 
-                ${submitting ? "opacity-60 cursor-not-allowed" : ""}`}
-            >
+            <button className="font-black uppercase flex items-center gap-2 text-black hover:text-white">
               {submitting ? "Submitting..." : "Submit For Verification"}
               <ChevronRight />
             </button>

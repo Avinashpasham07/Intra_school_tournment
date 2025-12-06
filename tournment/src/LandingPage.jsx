@@ -247,7 +247,7 @@ const LandingPage = () => {
 
       {/* ===================== SCHEDULE SECTION ===================== */}
       <div
-        id="schedule"
+        id="venue"
         className="bg-red-600 py-3 mt-15 transform -skew-y-2  relative z-20 overflow-hidden"
       >
         <div className="whitespace-nowrap flex animate-marquee">
@@ -268,7 +268,7 @@ const LandingPage = () => {
         
         {/* ===================== VENUE SECTION ===================== */}
         {/* ===================== VENUE SECTION WITH MAP ===================== */}
-<section id="venue" className="grid md:grid-cols-3 gap-6">
+<section className="grid md:grid-cols-3 gap-6">
 
   {/* LEFT SIDE – VENUE DETAILS */}
   <div className="group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/10 p-8">
@@ -680,19 +680,19 @@ const LandingPage = () => {
 
     {[
       {
-        name: "Nagaraj",
+        name: "N.Nagaraju",
         role: "JKA Diploma",
         img: "/nagaraj.jpg",
         category: "JKA Instructor & Judge",
       },
      {
-        name: "Kiran",
+        name: "M.Kiran",
         role: "JKA Diploma",
         img: "/kiran-1.jpg",
         category: "Judge",
       },
       {
-        name: "Kiran",
+        name: "S.Kiran",
         role: "JKA Diploma",
         img: "/kiran-2.jpg",
         category: "Judge",
@@ -716,7 +716,7 @@ const LandingPage = () => {
         category: "Judge",
       },
       {
-        name: "Avinash",
+        name: "Avinash Yadav",
         role: "KIO Black Belt",
         img: "/avi.jpg",
         category: "Judge",
